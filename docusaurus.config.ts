@@ -81,7 +81,7 @@ const config: Config = {
           label: 'Getting Started',
         },
         {
-          href: 'https://github.com/facebook/docusaurus',
+          href: 'https://github.com/pipeguru/documentation',
           label: 'GitHub',
           target: '_self',
           position: 'right',
