@@ -6,7 +6,7 @@ import type * as Preset from '@docusaurus/preset-classic';
 
 const config: Config = {
   title: 'Pipeguru Docs',
-  tagline: 'Mobile apps are cool',
+  tagline: 'PipeGuru empowers your product, marketing, and sales teams to launch mobile A/B tests and feature rollouts in minutes, without writing any code.',
   favicon: 'img/favicon.svg',
 
   // Future flags, see https://docusaurus.io/docs/api/docusaurus-config#future
