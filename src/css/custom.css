@@ -1,0 +1,588 @@
+/**
+ * Any CSS included here will be global. The classic template
+ * bundles Infima by default. Infima is a CSS framework designed to
+ * work well for content-centric websites.
+ */
+
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: local(''),
+       url('https://pipeguru.ai/fonts/inter-v13-latin-regular.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: local(''),
+       url('https://pipeguru.ai/fonts/inter-v13-latin-600.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: local(''),
+       url('https://pipeguru.ai/fonts/inter-v13-latin-700.woff2') format('woff2');
+}
+
+/* Playfair Display */
+@font-face {
+  font-family: 'Playfair Display';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: local(''),
+       url('https://pipeguru.ai/fonts/playfair-display-v30-latin-regular.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Playfair Display';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: local(''),
+       url('https://pipeguru.ai/fonts/playfair-display-v30-latin-700.woff2') format('woff2');
+}
+
+/* You can override the default Infima variables here. */
+:root {
+  /* Colors - monochrome theme matching main site */
+  --ifm-color-primary: #000000;
+  --ifm-color-primary-dark: #292524; /* stone-800 */
+  --ifm-color-primary-darker: #44403c; /* stone-700 */
+  --ifm-color-primary-darkest: #57534e; /* stone-600 */
+  --ifm-color-primary-light: #78716c; /* stone-500 */
+  --ifm-color-primary-lighter: #a8a29e; /* stone-400 */
+  --ifm-color-primary-lightest: #d6d3d1; /* stone-300 */
+  
+  /* Background and content colors */
+  --ifm-background-color: #f8f9fa;
+  --ifm-color-content: #000000;
+  --ifm-color-content-secondary: #666666;
+  --ifm-color-content-dimmed: #999999;
+  
+  /* Typography - matching main site fonts */
+  --ifm-font-family-base: 'Inter', sans-serif;
+  --ifm-heading-font-family: 'Playfair Display', serif;
+  
+  /* Layout and spacing */
+  --ifm-container-width-xl: 1200px;
+  --ifm-container-width: 1200px;
+  --ifm-container-padding-horizontal: 1.5rem;
+  
+  /* Heading sizes matching main site */
+  --ifm-h1-font-size: 3rem;
+  --ifm-h2-font-size: 2rem;
+  --ifm-h3-font-size: 1.5rem;
+  --ifm-h4-font-size: 1.25rem;
+  --ifm-h5-font-size: 1.125rem;
+  --ifm-h6-font-size: 1rem;
+  
+  /* Code styling */
+  --ifm-code-font-size: 95%;
+  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
+  
+  /* Border and radius */
+  --ifm-global-border-width: 1px;
+  --ifm-global-radius: 0.5rem;
+  
+  /* Navbar styling */
+  --ifm-navbar-background-color: #f8f9fa;
+  --ifm-navbar-link-color: #000000;
+  --ifm-navbar-link-hover-color: #666666;
+  
+  /* Sidebar styling */
+  --ifm-sidebar-background-color: #f5f5f5;
+  --ifm-sidebar-width: 300px;
+  
+  /* Footer styling */
+  --ifm-footer-background-color: #f5f5f5;
+  --ifm-footer-color: #666666;
+}
+
+/* For readability concerns, you should choose a lighter palette in dark mode. */
+[data-theme='dark'] {
+  /* Dark mode colors - inverted monochrome theme */
+  --ifm-color-primary: #fafaf9; /* stone-50 */
+  --ifm-color-primary-dark: #f5f5f4; /* stone-100 */
+  --ifm-color-primary-darker: #e7e5e4; /* stone-200 */
+  --ifm-color-primary-darkest: #d6d3d1; /* stone-300 */
+  --ifm-color-primary-light: #fafaf9; /* stone-50 */
+  --ifm-color-primary-lighter: #fafaf9; /* stone-50 */
+  --ifm-color-primary-lightest: #fafaf9; /* stone-50 */
+  
+  /* Dark mode background and content */
+  --ifm-background-color: #1a1a1a;
+  --ifm-color-content: #ffffff;
+  --ifm-color-content-secondary: #cccccc;
+  --ifm-color-content-dimmed: #999999;
+  
+  /* Dark mode navbar */
+  --ifm-navbar-background-color: #1a1a1a;
+  --ifm-navbar-link-color: #ffffff;
+  --ifm-navbar-link-hover-color: #cccccc;
+  
+  /* Dark mode sidebar */
+  --ifm-sidebar-background-color: #2a2a2a;
+  
+  /* Dark mode footer */
+  --ifm-footer-background-color: #2a2a2a;
+  --ifm-footer-color: #cccccc;
+  
+  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
+}
+
+/* ===== CUSTOM CSS CLASSES TO MATCH MAIN SITE ===== */
+
+/* Typography - Enhanced heading styles matching main site */
+.docusaurus-layout h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: 3rem;
+  font-weight: 700;
+  line-height: 1.2;
+  color: #171717;
+  margin-bottom: 1.5rem;
+}
+
+.docusaurus-layout h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 2rem;
+  font-weight: 700;
+  line-height: 1.3;
+  color: #171717;
+  margin-bottom: 1.25rem;
+}
+
+.docusaurus-layout h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.5rem;
+  font-weight: 600;
+  line-height: 1.4;
+  color: #171717;
+  margin-bottom: 1rem;
+}
+
+.docusaurus-layout h4 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.25rem;
+  font-weight: 600;
+  line-height: 1.4;
+  color: #171717;
+  margin-bottom: 0.875rem;
+}
+
+/* Body text styling matching main site */
+.docusaurus-layout p {
+  font-size: 1.0625rem;
+  font-weight: 400;
+  line-height: 1.6;
+  color: #000000;
+  margin-bottom: 1rem;
+}
+
+.docusaurus-layout small {
+  font-size: 0.875rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #666666;
+}
+
+/* Container styling matching main site */
+.docusaurus-layout .container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+@media (min-width: 768px) {
+  .docusaurus-layout .container {
+    padding: 0 2rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .docusaurus-layout .container {
+    padding: 0 3rem;
+  }
+}
+
+/* Button styling to match main site */
+.docusaurus-layout .button {
+  background: #000000;
+  color: #ffffff;
+  border: none;
+  border-radius: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  font-weight: 600;
+  font-size: 1rem;
+  transition: all 0.2s ease;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  text-decoration: none;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.06);
+}
+
+.docusaurus-layout .button:hover {
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
+  transform: scale(1.05);
+  color: #ffffff;
+  text-decoration: none;
+}
+
+.docusaurus-layout .button--secondary {
+  background: #f5f5f5;
+  color: #000000;
+  border: 1px solid #e5e5e5;
+}
+
+.docusaurus-layout .button--secondary:hover {
+  background: #e5e5e5;
+  color: #000000;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Card styling matching main site */
+.docusaurus-layout .card {
+  background: #ffffff;
+  border: 1px solid #e5e5e5;
+  border-radius: 0.5rem;
+  padding: 1.5rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  transition: all 0.2s ease;
+}
+
+.docusaurus-layout .card:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  transform: translateY(-2px);
+}
+
+/* Navigation styling */
+.docusaurus-layout .navbar {
+  background: #f8f9fa;
+  border-bottom: 1px solid #e5e5e5;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  padding: 2rem 0; /* Increased padding to match main site header height */
+  min-height: auto; /* Override default min-height */
+}
+
+.docusaurus-layout .navbar__inner {
+  padding: 0; /* Remove default padding to use our custom padding */
+}
+
+.docusaurus-layout .navbar__brand {
+  margin: 0; /* Remove default margins */
+  align-items: center;
+}
+
+/* Constrain and align the logo visually similar to site */
+.docusaurus-layout .navbar__logo img {
+  height: 26px; /* match site logo height */
+  width: auto;
+}
+
+.docusaurus-layout .navbar__items {
+  align-items: center; /* Ensure proper vertical alignment */
+}
+
+.docusaurus-layout .navbar__link {
+  color: #000000;
+  font-weight: 500;
+  font-size: 0.95rem;
+  padding: 0.25rem 0.5rem;
+  transition: color 0.2s ease;
+}
+
+.docusaurus-layout .navbar__link:hover {
+  color: #666666;
+}
+
+/* Sidebar styling */
+.docusaurus-layout .theme-doc-sidebar-container {
+  background: #f5f5f5;
+  border-right: 1px solid #e5e5e5;
+}
+
+.docusaurus-layout .menu__link {
+  color: #000000;
+  font-weight: 500;
+  font-size: 0.95rem;
+  transition: all 0.2s ease;
+  border-radius: 0.375rem;
+  margin: 0.125rem 0;
+}
+
+.docusaurus-layout .menu__link:hover {
+  background: #e5e5e5;
+  color: #000000;
+}
+
+.docusaurus-layout .menu__link--active {
+  background: #000000;
+  color: #ffffff;
+  font-weight: 600;
+}
+
+/* Code block styling */
+.docusaurus-layout .prism-code {
+  background: #f8f9fa;
+  border: 1px solid #e5e5e5;
+  border-radius: 0.5rem;
+  padding: 1rem;
+}
+
+.docusaurus-layout .token.comment {
+  color: #666666;
+}
+
+.docusaurus-layout .token.string {
+  color: #000000;
+}
+
+/* Table styling */
+.docusaurus-layout table {
+  border-collapse: collapse;
+  width: 100%;
+  margin: 1.5rem 0;
+}
+
+.docusaurus-layout th,
+.docusaurus-layout td {
+  border: 1px solid #e5e5e5;
+  padding: 0.75rem;
+  text-align: left;
+}
+
+.docusaurus-layout th {
+  background: #f5f5f5;
+  font-weight: 600;
+  color: #000000;
+}
+
+.docusaurus-layout tr:nth-child(even) {
+  background: #f8f9fa;
+}
+
+/* Footer styling */
+.docusaurus-layout .footer {
+  background: #f5f5f5;
+  border-top: 1px solid #e5e5e5;
+  color: #666666;
+  padding: 2rem 0;
+}
+
+.docusaurus-layout .footer__link {
+  color: #666666;
+  transition: color 0.2s ease;
+}
+
+.docusaurus-layout .footer__link:hover {
+  color: #000000;
+}
+
+/* Search styling */
+.docusaurus-layout .navbar__search-input {
+  background: #ffffff;
+  border: 1px solid #e5e5e5;
+  border-radius: 0.5rem;
+  color: #000000;
+}
+
+.docusaurus-layout .navbar__search-input:focus {
+  border-color: #000000;
+  box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.1);
+}
+
+/* Breadcrumb styling */
+.docusaurus-layout .breadcrumbs {
+  background: #f8f9fa;
+  border-bottom: 1px solid #e5e5e5;
+  padding: 0.75rem 0;
+}
+
+.docusaurus-layout .breadcrumbs__link {
+  color: #666666;
+  transition: color 0.2s ease;
+}
+
+.docusaurus-layout .breadcrumbs__link:hover {
+  color: #000000;
+}
+
+/* Pagination styling */
+.docusaurus-layout .pagination {
+  margin: 2rem 0;
+}
+
+.docusaurus-layout .pagination__link {
+  background: #ffffff;
+  border: 1px solid #e5e5e5;
+  color: #000000;
+  border-radius: 0.5rem;
+  padding: 0.75rem 1rem;
+  transition: all 0.2s ease;
+}
+
+.docusaurus-layout .pagination__link:hover {
+  background: #f5f5f5;
+  border-color: #000000;
+  color: #000000;
+}
+
+.docusaurus-layout .pagination__link--active {
+  background: #000000;
+  color: #ffffff;
+  border-color: #000000;
+}
+
+/* Alert/notification styling */
+.docusaurus-layout .alert {
+  border-radius: 0.5rem;
+  padding: 1rem;
+  margin: 1rem 0;
+  border: 1px solid;
+}
+
+.docusaurus-layout .alert--info {
+  background: #f0f9ff;
+  border-color: #0ea5e9;
+  color: #0c4a6e;
+}
+
+.docusaurus-layout .alert--warning {
+  background: #fffbeb;
+  border-color: #f59e0b;
+  color: #92400e;
+}
+
+.docusaurus-layout .alert--danger {
+  background: #fef2f2;
+  border-color: #ef4444;
+  color: #991b1b;
+}
+
+.docusaurus-layout .alert--success {
+  background: #f0fdf4;
+  border-color: #22c55e;
+  color: #166534;
+}
+
+/* ===== ADDITIONAL POLISH WITHIN DOCUSAURUS LIMITATIONS ===== */
+
+/* Responsive navbar padding */
+@media (max-width: 768px) {
+  .docusaurus-layout .navbar {
+    padding: 1rem 0; /* Reduce padding on mobile */
+  }
+}
+
+/* Better content spacing */
+.docusaurus-layout .main-wrapper {
+  padding: 2rem 0;
+}
+
+/* Improved inline links */
+.docusaurus-layout a:not(.button):not(.navbar__link):not(.menu__link):not(.footer__link) {
+  color: #000000;
+  text-decoration: underline;
+  text-decoration-color: #e5e5e5;
+  text-underline-offset: 2px;
+  transition: all 0.2s ease;
+}
+
+.docusaurus-layout a:not(.button):not(.navbar__link):not(.menu__link):not(.footer__link):hover {
+  color: #666666;
+  text-decoration-color: #666666;
+}
+
+/* Better code inline styling */
+.docusaurus-layout code:not(.prism-code) {
+  background: #f5f5f5;
+  border: 1px solid #e5e5e5;
+  border-radius: 0.25rem;
+  padding: 0.125rem 0.375rem;
+  font-size: 0.875rem;
+  color: #000000;
+  font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+}
+
+/* Improved blockquotes */
+.docusaurus-layout blockquote {
+  border-left: 4px solid #e5e5e5;
+  background: #f8f9fa;
+  padding: 1rem 1.5rem;
+  margin: 1.5rem 0;
+  border-radius: 0 0.5rem 0.5rem 0;
+}
+
+.docusaurus-layout blockquote p {
+  margin: 0;
+  color: #666666;
+  font-style: italic;
+}
+
+/* Better list styling */
+.docusaurus-layout ul,
+.docusaurus-layout ol {
+  padding-left: 1.5rem;
+  margin: 1rem 0;
+}
+
+.docusaurus-layout li {
+  margin: 0.5rem 0;
+  line-height: 1.6;
+}
+
+/* Table of contents styling */
+.docusaurus-layout .table-of-contents {
+  background: #f8f9fa;
+  border: 1px solid #e5e5e5;
+  border-radius: 0.5rem;
+  padding: 1rem;
+  margin: 1rem 0;
+}
+
+.docusaurus-layout .table-of-contents__link {
+  color: #666666;
+  font-size: 0.875rem;
+  transition: color 0.2s ease;
+}
+
+.docusaurus-layout .table-of-contents__link:hover {
+  color: #000000;
+}
+
+.docusaurus-layout .table-of-contents__link--active {
+  color: #000000;
+  font-weight: 600;
+}
+
+/* Better markdown content spacing */
+.docusaurus-layout .markdown {
+  line-height: 1.7;
+}
+
+.docusaurus-layout .markdown > *:first-child {
+  margin-top: 0;
+}
+
+.docusaurus-layout .markdown > *:last-child {
+  margin-bottom: 0;
+}
+
+/* Improved heading margins for better hierarchy */
+.docusaurus-layout h1:not(:first-child) {
+  margin-top: 3rem;
+}
+
+.docusaurus-layout h2:not(:first-child) {
+  margin-top: 2.5rem;
+}
+
+.docusaurus-layout h3:not(:first-child) {
+  margin-top: 2rem;
+}
