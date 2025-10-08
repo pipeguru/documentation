@@ -7,6 +7,14 @@ tags: [react-native, installation]
 
 This guide will walk you through the steps to integrate PipeGuru into your React Native application.
 
+> **📘 Note: API Style**
+>
+> This guide uses the **imperative API** (`PipeGuru.initialize()`, `PipeGuru.track()`) which works everywhere and requires minimal setup.
+>
+> We also offer a **React Hooks API** with `<SDKProvider>`, `useCampaigns()`, and automatic re-rendering for teams that prefer modern React patterns.
+>
+> **Interested in the Hooks API?** Let us know.
+
 ### 1. Install the Package
 
 Install the PipeGuru package using npm or yarn.
