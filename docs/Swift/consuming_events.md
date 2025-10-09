@@ -46,7 +46,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, PipeGuruDelegate {
 
 ### 3. Implement the Delegate Method
 
-The delegate protocol has one required method, `pipeGuru(didFireEvent:)`. You can `switch` on the `PipeGuruEvent` enum to handle different event types. For cleaner code, we recommend using a helper function to forward events to your analytics platform.
+The delegate protocol has one required method, `pipeGuru(didFireEvent:)`. You can `switch` on the `PipeGuruEvent` enum to handle different event types. For cleaner code, we recommend using a helper function `trackAnalytics` to forward events to your analytics platform.
 
 ```swift
 func pipeGuru(didFireEvent event: PipeGuruEvent) {
