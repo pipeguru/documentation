@@ -1,6 +1,7 @@
 ---
 title: How to trigger experiments in Swift?
 tags: [swift, experiments]
+sidebar_position: 2
 ---
 
 ## Triggering Experiments

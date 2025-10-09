@@ -1,6 +1,7 @@
 ---
 title: Swift Installation Guide
 tags: [swift, installation]
+sidebar_position: 1
 ---
 
 ## Getting Started with PipeGuru for Swift
