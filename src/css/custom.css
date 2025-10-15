@@ -486,17 +486,10 @@
 }
 
 /* Improved inline links */
-.docusaurus-layout a:not(.button):not(.navbar__link):not(.menu__link):not(.footer__link) {
-  color: #000000;
+.theme-doc-markdown.markdown a {
   text-decoration: underline;
-  text-decoration-color: #e5e5e5;
-  text-underline-offset: 2px;
+  text-underline-offset: 4px;
   transition: all 0.2s ease;
-}
-
-.docusaurus-layout a:not(.button):not(.navbar__link):not(.menu__link):not(.footer__link):hover {
-  color: #666666;
-  text-decoration-color: #666666;
 }
 
 /* Better code inline styling */

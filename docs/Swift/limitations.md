@@ -16,6 +16,8 @@ PipeGuru is designed for speed and flexibility, allowing you to run experiments 
 
 While PipeGuru is powerful, it has some limitations you should be aware of. These are primarily related to modifying existing native UI components or critical authentication flows.
 
+Our [React Native SDK](/category/react-native) is more flexible and allows for experiments to be triggered from anywhere in your code, whereas the SwiftUI SDK is currently limited to the UI components it provides.
+
 ### 1. No Modification of Existing Native Components
 
 PipeGuru experiments cannot directly alter the properties or behavior of your app's existing native UI components. For example, you cannot run an experiment to:
@@ -25,6 +27,8 @@ PipeGuru experiments cannot directly alter the properties or behavior of your ap
 - Add a badge to a native tab bar item.
 
 Experiments are contained within the `PipeGuruCardView` and `PipeGuruSheet` views. The logic and presentation of what's inside these views are controlled remotely, but the views themselves are placed within your existing native layout.
+
+Since we absorb the design system of the original application we can recreate experiences which look indistinguisable from native components.
 
 ### 2. No Inline Native Components
 
@@ -36,7 +40,7 @@ PipeGuru is not designed to experiment on core authentication flows like login, 
 
 ### 4. No Generic Web Checkouts with SDK Transaction Tracking
 
-While you can display a web-based checkout flow within a `PipeGuruSheet`, the SDK's automatic transaction tracking (`transactionStarted`, `transactionCompleted`) is designed for native In-App Purchases (StoreKit).
+While you can display a web-based checkout flow within a `.pipeGuruSheet`, the SDK's automatic transaction tracking (`transactionStarted`, `transactionCompleted`) is designed for native In-App Purchases (StoreKit).
 
 If you use a standard web checkout inside a webview, you would need to implement a custom communication layer (e.g., using JavaScript bridges) to inform the native app about the transaction status and then manually fire your own analytics events. The PipeGuru SDK will not automatically detect a purchases made on your website. Our forward deployed engineers are happy to work with you on a specific requirement of this form.
 
