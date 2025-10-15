@@ -8,7 +8,7 @@ sidebar_position: 4
 
 PipeGuru is designed for speed and flexibility, allowing you to run experiments that present new user interfaces and flows. The primary use cases revolve around displaying content within SwiftUI views provided by the SDK:
 
-*   **Presenting Web Content**: You can display any web-based content or user flow inside a `PipeGuruSheet` (as a modal sheet or full-screen cover) or a `PipeGuruCardView`. This is ideal for promotional screens, surveys, new feature announcements, or multi-step flows that can be built with web technologies.
+*   **Presenting Web Content**: You can display any web-based content or user flow inside a `.pipeGuruSheet` (as a modal sheet or full-screen cover) or a `PipeGuruCardView`. This is ideal for promotional screens, surveys, new feature announcements, or multi-step flows that can be built with web technologies.
 *   **In-App Purchases**: The SDK is equipped to track transactions initiated from experiment screens, with built-in support for App Store In-App Purchases.
 *   **Deep Linking**: You can navigate users to any part of your app from a PipeGuru view using deep links.
 

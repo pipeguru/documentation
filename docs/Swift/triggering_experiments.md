@@ -46,7 +46,7 @@ struct PersonalizedContentView: View {
 
 ### Presenting a Sheet
 
-To present an experiment in a modal sheet or full-screen cover (e.g., for an onboarding flow), use the `PipeGuruSheet` view modifier. It binds to a boolean state variable to control its presentation.
+To present an experiment in a modal sheet or full-screen cover (e.g., for an onboarding flow), use the `.pipeGuruSheet` view modifier. It binds to a boolean state variable to control its presentation.
 
 This modifier expects the experiment payload to contain a `webviewUrl` which can be configured remotely in the pipeguru dashboard.
 
@@ -56,15 +56,12 @@ import PipeGuru
 
 struct ContentView: View {
     @State private var showOnboarding = false
+    let brazeSegments: [String] = ["segment1", "segment2"]
 
     var body: some View {
-        VStack {
-            Button("Start Onboarding") {
-                showOnboarding = true
-            }
-        }
-        // The sheet is triggered when `showOnboarding` becomes true.
-        PipeGuruSheet(
+        Color.clear
+        .onAppear { showOnboarding = true }
+        .pipeGuruSheet(
             "newUserOnboarding",
             isPresented: $showOnboarding,
             style: .fullScreen, // or .sheet
