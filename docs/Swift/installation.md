@@ -27,14 +27,39 @@ Choose the latest version and add it to your project.
 
 ### 3. Initialize PipeGuru
 
-In your `AppDelegate.swift`, import and initialize PipeGuru.
+You should initialize the PipeGuru SDK when your app starts. The way you do this depends on whether your app uses the SwiftUI App Life Cycle or the UIKit App Delegate.
 
+#### For SwiftUI Apps
+If your app's entry point is a `struct` that conforms to `App`, initialize PipeGuru in the `init()` method.
+
+```swift
+import SwiftUI
+import PipeGuru
+
+@main
+struct YourApp: App {
+    init() {
+        // Initialize PipeGuru with your API key
+        PipeGuru.initialize(apiKey: "YOUR_API_KEY")
+    }
+
+    var body: some Scene {
+        WindowGroup {
+            // Replace this with your app's root view
+            ContentView() 
+        }
+    }
+}
+```
+
+#### For UIKit Apps
+In your `AppDelegate.swift`, import and initialize PipeGuru inside `application(_:didFinishLaunchingWithOptions:)`.
 ```swift
 import PipeGuru
 
 func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
     // Initialize PipeGuru with your API key
-    PipeGuru.initialize("YOUR_API_KEY")
+    PipeGuru.initialize(apiKey: "YOUR_API_KEY")
     return true
 }
 ```
