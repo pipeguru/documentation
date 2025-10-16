@@ -1,6 +1,7 @@
 ---
 title: React Native Installation Guide
 tags: [react-native, installation]
+sidebar_position: 1
 ---
 
 ## Getting Started with PipeGuru for React Native
