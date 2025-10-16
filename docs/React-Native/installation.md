@@ -39,7 +39,7 @@ npx react-native link @pipeguru/react-native
 
 In your main `App.js` or `index.js` file, import and initialize PipeGuru.
 
-```javascript
+```typescript
 import PipeGuru from '@pipeguru/react-native';
 import React from 'react';
 import { View } from 'react-native';

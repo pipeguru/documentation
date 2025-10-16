@@ -1,95 +1,175 @@
 ---
-title: How to trigger experiments in React Native?
+title: Triggering Experiments in React Native
 tags: [react-native, experiments]
+sidebar_position: 2
 ---
 
 ## Triggering Experiments
 
-In your React Native component, you can trigger an experiment when the component mounts:
+The PipeGuru React Native SDK offers a flexible, hook-based approach to instrumenting your app for experiments. By adding a single hook to your screens, you can empower your marketing and product teams to remotely configure and launch multiple types of placements—popups, inline banners, and button-driven flows—without needing new app releases.
 
-```javascript
-import React, { useEffect } from 'react';
-import { View, Button } from 'react-native';
-import PipeGuru from '@pipeguru/react-native';
+The core of this system is the `usePipeguruTriggers` hook. You provide it with a unique `screenId` for the screen you're instrumenting, and it returns components that will automatically render placements configured for that `screenId` in the PipeGuru dashboard.
 
-const MainScreen = () => {
-  useEffect(() => {
-    // Trigger an experiment when the screen loads
-    PipeGuru.track('user_viewed_main_screen');
-  }, []);
+### The `usePipeguruTriggers` Hook
 
-  return (
-    <View>
-      {/* ... */}
-    </View>
+First, import the hook and call it in your component. You must provide a unique `screenId` and can optionally pass an `attributes` object for server-side targeting.
+
+These attributes allow your non-technical teams to create powerful segments from the PipeGuru dashboard, like showing an experiment only to "female users in Berlin" or "users on a premium plan".
+
+```typescript
+import { usePipeguruTriggers } from '@pipeguru/react-native';
+
+const HomeScreen = () => {
+  // Example attributes for segmentation.
+  // 'braze_segments' is shown here as an example of passing custom data structures.
+  const brazeSegments = ['segment1', 'segment2'];
+
+  const { OverlayPlacement, InlinePlacement, TriggerButton } = usePipeguruTriggers(
+    'home',
+    {
+      attributes: {
+        plan: 'premium',
+        user_level: 'power_user',
+        gender: 'female',
+        city: 'Berlin',
+        country: 'Germany',
+        braze_segments: brazeSegments,
+      },
+    }
   );
-};
 
-export default MainScreen;
+  // ... render the components
+};
 ```
 
-You can also trigger an experiment based on a user action, like a button press:
+The hook returns three components, each corresponding to a different type of placement.
 
-```javascript
+### 1. Displaying Overlays (Popups, Modals)
+
+The `<OverlayPlacement />` component is used to display experiments that appear on top of your UI, such as welcome popups, promotional modals, or full-screen takeovers. Simply render it at the top level of your screen component. It handles its own logic for when to appear based on the remote configuration.
+
+This is ideal for:
+- On-mount triggers (e.g., "Show a welcome message 2 seconds after the user opens the home screen").
+- User-segment-based offers.
+
+```typescript
 import React from 'react';
-import { View, Button } from 'react-native';
-import PipeGuru from '@pipeguru/react-native';
+import { View, Text } from 'react-native';
+import { usePipeguruTriggers } from '@pipeguru/react-native';
 
-const PricingScreen = () => {
-  const handleSubscribePress = () => {
-    // Example properties for segmentation.
-    // 'brazeSegments' is shown here as an example of passing custom data structures.
-    const brazeSegments = ['segment1', 'segment2'];
-
-    // This event can now be used to trigger an experiment from the PipeGuru dashboard
-    PipeGuru.track('user_viewed_pricing_page', {
-        'plan': 'premium',
-        'user_level': 'power_user',
-        'gender': 'female',
-        'city': 'Berlin',
-        'country': 'Germany',
-        'braze_segments': brazeSegments,
-    });
-  };
+const HomeScreen = () => {
+  const { OverlayPlacement } = usePipeguruTriggers('home');
 
   return (
-    <View>
-      <Button title="Subscribe" onPress={handleSubscribePress} />
+    <View style={{ flex: 1 }}>
+      {/* This component will automatically handle showing popups */}
+      <OverlayPlacement />
+      <Text>Your screen content</Text>
     </View>
   );
 };
-
-export default PricingScreen;
 ```
 
-To show an experiment directly, you can use the `showExperiment` method:
+### 2. Displaying Inline Content (Banners, Cards)
 
-```javascript
-import React, { useEffect } from 'react';
-import { View } from 'react-native';
-import PipeGuru from '@pipeguru/react-native';
+The `<InlinePlacement />` component renders content directly within your screen's layout. It's perfect for embedding promotional banners, feature announcements, or personalized cards that feel like a native part of the UI.
 
-const MainScreen = () => {
-  useEffect(() => {
-    const brazeSegments = ['segment1', 'segment2'];
+Place the component wherever you want the inline content to appear. Its size and content are controlled from the dashboard.
 
-    // Directly show an experiment with properties
-    PipeGuru.showExperiment('new_user_onboarding', {
-        'plan': 'premium',
-        'user_level': 'power_user',
-        'gender': 'female',
-        'city': 'Berlin',
-        'country': 'Germany',
-        'braze_segments': brazeSegments,
-    });
-  }, []);
+```typescript
+import React from 'react';
+import { View, Text, ScrollView } from 'react-native';
+import { usePipeguruTriggers } from '@pipeguru/react-native';
+
+const FeedScreen = () => {
+  const { InlinePlacement } = usePipeguruTriggers('feed');
 
   return (
-    <View>
-      {/* ... */}
+    <ScrollView>
+      <Text>Content above the banner</Text>
+      
+      {/* Renders a promotional banner if one is configured */}
+      <InlinePlacement />
+      
+      <Text>Content below the banner</Text>
+    </ScrollView>
+  );
+};
+```
+
+### 3. Using Button Triggers
+
+The `<TriggerButton />` component renders a remotely-configurable button. Your marketing team can control the button's appearance, text, and what experiment it launches when pressed. If no button is configured for the `screenId` in the dashboard, it will render nothing.
+
+This is useful for user-initiated flows, like "Show me a demo" or "Claim my offer".
+
+```typescript
+import React from 'react';
+import { View, Text } from 'react-native';
+import { usePipeguruTriggers } from '@pipeguru/react-native';
+
+const SettingsScreen = () => {
+  const { TriggerButton } = usePipeguruTriggers('settings');
+
+  return (
+    <View style={{ flex: 1 }}>
+      <Text>App Settings</Text>
+      
+      {/* Renders a button that might launch a "Rate the App" flow */}
+      <TriggerButton />
     </View>
   );
 };
-
-export default MainScreen;
 ```
+
+### Putting It All Together
+
+By instrumenting a screen once, you open up multiple opportunities for experiments that can be run independently from the dashboard.
+
+```typescript
+import React from 'react';
+import { View, Text, ScrollView } from 'react-native';
+import { usePipeguruTriggers } from '@pipeguru/react-native';
+
+const HomeScreen = () => {
+  // Instrument the screen with a unique ID
+  const { OverlayPlacement, InlinePlacement, TriggerButton } = usePipeguruTriggers(
+    'home',
+    {
+      attributes: {
+        plan: 'premium',
+        user_level: 'power_user',
+        gender: 'female',
+        city: 'Berlin',
+        country: 'Germany',
+        braze_segments: ['segment1', 'segment2'],
+      },
+    }
+  );
+
+  return (
+    <View style={{ flex: 1 }}>
+      {/* Handles popups and full-screen takeovers */}
+      <OverlayPlacement />
+
+      <ScrollView>
+        <Text>Welcome to our app!</Text>
+        
+        {/* Renders an inline promotional banner */}
+        <InlinePlacement />
+        
+        <Text>More content here...</Text>
+      </ScrollView>
+      
+      {/* Renders a floating action button or a button at the bottom */}
+      <TriggerButton />
+    </View>
+  );
+};
+```
+
+With this single-time setup, your non-technical teams are now empowered to:
+- Launch a "Welcome" popup on the `home` screen.
+- A/B test different promotional banners.
+- Add a "Feedback" button that opens a survey flow.
+...all without writing any new code.
